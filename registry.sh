@@ -140,6 +140,20 @@ connect_registry() {
 }
 
 config_registry_for_nodes() {
+    if [ -f "$GITHUB_PATH" ]; then
+        while IFS= read -r line; do
+            echo "ghpath: $line"
+            export PATH="$PATH:$line"
+        done < "$GITHUB_PATH"
+    fi
+
+    echo "which kubectl ======================="
+    which -a kubectl || echo "kubectl is missing"
+    echo "which kubectl end ======================="
+    echo "which kind ======================="
+    which -a kind || echo "kind is missing"
+    echo "which kind end===================="
+
     # Reference: https://github.com/containerd/containerd/blob/main/docs/hosts.md
     REGISTRY_DIR="/etc/containerd/certs.d/${registry_name}:${registry_port}"
 
@@ -170,4 +184,13 @@ data:
 EOF
 }
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo "registry.sh is starting"
+echo "which kubectl ............................"
+which -a kubectl || echo "kubectl is missing"
+echo "which kubectl end ........................"
+echo "which kind .............................."
+which -a kind || echo "kind is missing"
+echo "which kind end ......................."
+echo "======================================="
 main "$@"
