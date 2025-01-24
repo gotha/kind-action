@@ -81,7 +81,6 @@ main() {
 
     echo 'Adding kind directory to PATH...'
     echo "${kind_dir}" >> "${GITHUB_PATH}"
-    export PATH="$PATH:${kind_dir}"
 
     local kubectl_dir="${cache_dir}/kubectl/bin/"
     if [[ ! -x "${kubectl_dir}/kubectl" ]]; then
@@ -90,7 +89,6 @@ main() {
 
     echo 'Adding kubectl directory to PATH...'
     echo "${kubectl_dir}" >> "${GITHUB_PATH}"
-    export PATH="$PATH:${kubectl_dir}"
 
     "${kind_dir}/kind" version
     "${kubectl_dir}/kubectl" version --client=true
