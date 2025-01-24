@@ -140,6 +140,12 @@ connect_registry() {
 }
 
 config_registry_for_nodes() {
+    if [ -f "$GITHUB_PATH" ]; then
+        while IFS= read -r line; do
+            echo "ghpath: $line"
+            export PATH="$PATH:$line"
+        done < "$GITHUB_PATH"
+    fi
     echo "==================================="
     echo "PATH: $PATH"
     echo "GITHUB_PATH: $GITHUB_PATH" 
