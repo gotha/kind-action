@@ -142,7 +142,9 @@ connect_registry() {
 config_registry_for_nodes() {
     echo "==================================="
     echo "PATH: $PATH"
+    echo "GITHUB_PATH: $GITHUB_PATH" 
     echo "==================================="
+    ls -las "$GITHUB_PATH"
     which kind
     echo "==================================="
     # Reference: https://github.com/containerd/containerd/blob/main/docs/hosts.md
