@@ -143,6 +143,8 @@ config_registry_for_nodes() {
     echo "==================================="
     echo "PATH: $PATH"
     echo "GITHUB_PATH: $GITHUB_PATH" 
+    echo "--------------------------"
+    cat $GITHUB_PATH
     echo "==================================="
     ls -las "$GITHUB_PATH"
     which kind
