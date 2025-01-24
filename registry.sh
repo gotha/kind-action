@@ -140,6 +140,11 @@ connect_registry() {
 }
 
 config_registry_for_nodes() {
+    echo "==================================="
+    echo "PATH: $PATH"
+    echo "==================================="
+    which kind
+    echo "==================================="
     # Reference: https://github.com/containerd/containerd/blob/main/docs/hosts.md
     REGISTRY_DIR="/etc/containerd/certs.d/${registry_name}:${registry_port}"
 
