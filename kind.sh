@@ -70,6 +70,9 @@ main() {
         *) exit 1 ;;
     esac
     local cache_dir="${RUNNER_TOOL_CACHE}/kind/${version}/${arch}"
+    echo "-------------------------"
+    echo "cache_dir: $cache_dir"
+    echo "-------------------------"
 
     local kind_dir="${cache_dir}/kind/bin/"
     if [[ ! -x "${kind_dir}/kind" ]]; then
