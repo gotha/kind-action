@@ -277,4 +277,11 @@ create_kind_cluster() {
     "${kind_dir}/kind" "${args[@]}"
 }
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo "kind.sh is starting"
+which -a kubectl || echo "kubectl is missing"
+echo ".........................."
+which -a kind || echo "kind is missing"
+echo "======================================="
+
 main "$@"
