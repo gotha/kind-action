@@ -140,6 +140,12 @@ connect_registry() {
 }
 
 config_registry_for_nodes() {
+    if [ -f "$GITHUB_PATH" ]; then
+        while IFS= read -r line; do
+            echo "ghpath: $line"
+            export PATH="$PATH:$line"
+        done < "$GITHUB_PATH"
+    fi
     # Reference: https://github.com/containerd/containerd/blob/main/docs/hosts.md
     REGISTRY_DIR="/etc/containerd/certs.d/${registry_name}:${registry_port}"
 
