@@ -10,8 +10,10 @@ install_kubectl() {
 }
 
 local cache_dir="${RUNNER_TOOL_CACHE}/kind/${version}/${arch}"
+echo "cache_dir: $cache_dir"
 
 local kubectl_dir="${cache_dir}/kubectl/bin/"
+echo "kubectl_dir: $kubectl_dir"
 if [[ ! -x "${kubectl_dir}/kubectl" ]]; then
     install_kubectl
 fi
