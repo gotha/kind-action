@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
-
+  echo $(uname -m)
   local version="v1.31.4"
   local arch
   case $(uname -m) in
