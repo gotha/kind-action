@@ -1,6 +1,11 @@
 name: Manually trigger a pipeline to test how GITUB_PATH works
 
 on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - releases/*
   workflow_dispatch:
 
 jobs:
