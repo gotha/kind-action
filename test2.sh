@@ -3,4 +3,4 @@
 echo "which:"
 which kubectl
 echo "kubectl ver"
-kubectl version
+kubectl version --client
