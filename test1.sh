@@ -23,8 +23,3 @@ chmod +x "${kubectl_dir}/kubectl"
 
 echo 'Adding kubectl directory to PATH...'
 echo "${kubectl_dir}" >> "${GITHUB_PATH}"
-echo "........................"
-cat "$GITHUB_PATH"
-echo "x........................"
-which kubectl
-echo "........................"
