@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DEFAULT_KIND_VERSION=v0.26.0
+DEFAULT_KUBECTL_VERSION=v1.31.4
 
 install_kubectl() {
     echo 'Installing kubectl...'
@@ -14,6 +15,7 @@ install_kubectl() {
 main() {
 
   local version="${DEFAULT_KIND_VERSION}"
+  local kubectl_version="${DEFAULT_KUBECTL_VERSION}"
   local arch
   case $(uname -m) in
       i386)               arch="386" ;;
