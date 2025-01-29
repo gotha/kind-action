@@ -16,7 +16,7 @@ main() {
   local kubectl_dir="${cache_dir}/kubectl/bin/"
   echo "kubectl_dir: $kubectl_dir"
   mkdir -p "${kubectl_dir}"
-  ls -las $kubectl_dir
+  ls -las "$kubectl_dir"
 
   echo "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
   curl -sSLo "${kubectl_dir}/kubectl" "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
@@ -25,7 +25,7 @@ main() {
   echo 'Adding kubectl directory to PATH...'
   echo "${kubectl_dir}" >> "${GITHUB_PATH}"
   echo "........................"
-  cat $GITHUB_PATH
+  cat "$GITHUB_PATH"
   echo "x........................"
   which kubectl
   echo "........................"
