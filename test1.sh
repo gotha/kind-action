@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 
-echo "======================"
-cat ${GITHUB_PATH}
-echo "............................"
-echo $PATH
+install_kubectl() {
+    echo 'Installing kubectl...'
 
-echo "/opt/gotha/bin" >> "${GITHUB_PATH}"
-echo "test1 executed"
+    mkdir -p "${kubectl_dir}"
+
+    curl -sSLo "${kubectl_dir}/kubectl" "https://dl.k8s.io/release/${kubectl_version}/bin/linux/${arch}/kubectl"
+    chmod +x "${kubectl_dir}/kubectl"
+}
+
+local cache_dir="${RUNNER_TOOL_CACHE}/kind/${version}/${arch}"
+
+local kubectl_dir="${cache_dir}/kubectl/bin/"
+if [[ ! -x "${kubectl_dir}/kubectl" ]]; then
+    install_kubectl
+fi
+
+echo 'Adding kubectl directory to PATH...'
+echo "${kubectl_dir}" >> "${GITHUB_PATH}"
+
+echo "test1 done"
 echo "======================"
