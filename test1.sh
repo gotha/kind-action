@@ -1,43 +1,35 @@
 #!/usr/bin/env bash
 
-DEFAULT_KIND_VERSION=v0.26.0
-DEFAULT_KUBECTL_VERSION=v1.31.4
-
-install_kubectl() {
-    echo 'Installing kubectl...'
-
-    mkdir -p "${kubectl_dir}"
-
-    curl -sSLo "${kubectl_dir}/kubectl" "https://dl.k8s.io/release/${kubectl_version}/bin/linux/${arch}/kubectl"
-    chmod +x "${kubectl_dir}/kubectl"
-}
-
 main() {
 
-  local version="${DEFAULT_KIND_VERSION}"
-  local kubectl_version="${DEFAULT_KUBECTL_VERSION}"
+  local version="v1.31.4"
   local arch
   case $(uname -m) in
-      i386)               arch="386" ;;
       i686)               arch="386" ;;
-      x86_64)             arch="amd64" ;;
       arm|aarch64|arm64)  arch="arm64" ;;
       *) exit 1 ;;
   esac
-  local cache_dir="${RUNNER_TOOL_CACHE}/kind/${version}/${arch}"
+
+  local cache_dir="${RUNNER_TOOL_CACHE}/tmp/${version}/${arch}"
   echo "cache_dir: $cache_dir"
 
   local kubectl_dir="${cache_dir}/kubectl/bin/"
   echo "kubectl_dir: $kubectl_dir"
-  if [[ ! -x "${kubectl_dir}/kubectl" ]]; then
-      install_kubectl
-  fi
+  mkdir -p "${kubectl_dir}"
+  ls -las $kubectl_dir
+
+  echo "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
+  curl -sSLo "${kubectl_dir}/kubectl" "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
+  chmod +x "${kubectl_dir}/kubectl"
 
   echo 'Adding kubectl directory to PATH...'
   echo "${kubectl_dir}" >> "${GITHUB_PATH}"
+  echo "........................"
+  cat $GITHUB_PATH
+  echo "x........................"
+  which kubectl
+  echo "........................"
 }
 
 main
-echo "test1 done"
-echo "======================"
 
