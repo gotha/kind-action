@@ -6,6 +6,7 @@ main() {
   local arch
   case $(uname -m) in
       i686)               arch="386" ;;
+      x86_64)             arch="amd64" ;;
       arm|aarch64|arm64)  arch="arm64" ;;
       *) exit 1 ;;
   esac
