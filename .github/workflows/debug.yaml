@@ -16,6 +16,7 @@ jobs:
       uses: actions/checkout@v4
     - name: dbg1
       run: |
+        ls -las
         ./test1.sh
         ./test2.sh
     - name: dbg2
