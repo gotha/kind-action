@@ -16,15 +16,11 @@ jobs:
       uses: actions/checkout@v4
     - name: dbg1
       run: |
-        echo "/opt/gotha/bin" >> "${GITHUB_PATH}"
-        echo "========================"
-        cat "$GITHUB_PATH"
-        echo "========================"
+        ./test1.sh
+        ./test2.sh
     - name: dbg2
       run: |
-        echo "========================"
-        cat "$GITHUB_PATH"
-        echo "========================"
+        ./test2.sh
 
   test:
     runs-on: ubuntu-latest
@@ -32,7 +28,5 @@ jobs:
     steps:
     - name: dbg3
       run: |
-        echo "========================"
-        cat $GITHUB_PATH
-        echo "========================"
+        ./test2.sh
 
