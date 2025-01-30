@@ -140,9 +140,11 @@ connect_registry() {
 }
 
 config_registry_for_nodes() {
-
+    echo "which kubectl ======================="
+    which -a kubectl
+    echo "which kubectl end ======================="
     echo "which kind ======================="
-    which kind
+    which -a kind
     echo "which kind end===================="
     #if [ -f "$GITHUB_PATH" ]; then
     #    while IFS= read -r line; do
