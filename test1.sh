@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
+echo "==================="
+echo "check if kubectl exists:"
+which kubectl
+echo "==================="
+
+
 version="v1.31.4"
 arch
 case $(uname -m) in
+    i386)               arch="386" ;;
     i686)               arch="386" ;;
     x86_64)             arch="amd64" ;;
     arm|aarch64|arm64)  arch="arm64" ;;
