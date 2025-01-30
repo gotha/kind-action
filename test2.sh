@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 echo "which:"
-which kubectl
-echo "kubectl ver"
-kubectl version --client
+which cowsay
+echo "cowsay:"
+cowsay "hello"

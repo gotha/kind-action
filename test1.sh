@@ -1,32 +1,26 @@
 #!/usr/bin/env bash
 
-echo "==================="
-echo "check if kubectl exists:"
-which kubectl
-echo "==================="
-
-
-version="v1.31.4"
 arch
 case $(uname -m) in
-    i386)               arch="386" ;;
-    i686)               arch="386" ;;
-    x86_64)             arch="amd64" ;;
-    arm|aarch64|arm64)  arch="arm64" ;;
+    x86_64)             arch="x86_64" ;;
+    arm|aarch64|arm64)  arch="arm" ;;
     *) exit 1 ;;
 esac
 
-cache_dir="${RUNNER_TOOL_CACHE}/tmp/${version}/${arch}"
-echo "cache_dir: $cache_dir"
+today=$(date +'%Y-%m-%d')
+cache_dir="${RUNNER_TOOL_CACHE}/tmp/${today}/${arch}"
+mkdir -p "${cache_dir}/tmp"
+install_dir="${cache_dir}/cowsay/bin/"
+mkdir -p "${install_dir}"
 
-kubectl_dir="${cache_dir}/kubectl/bin/"
-echo "kubectl_dir: $kubectl_dir"
-mkdir -p "${kubectl_dir}"
-ls -las "$kubectl_dir"
 
-echo "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
-curl -sSLo "${kubectl_dir}/kubectl" "https://dl.k8s.io/release/${version}/bin/linux/${arch}/kubectl"
-chmod +x "${kubectl_dir}/kubectl"
+url="https://github.com/Code-Hex/Neo-cowsay/releases/download/v2.0.4/cowsay_2.0.4_Linux_$arch.tar.gz"
+echo $url
+curl -sSLo "${cache_dir}/cowsay.tar.gz" "$url"
+tar -xvzf "${cache_dir}/cowsay.tar.gz" -C "${cache_dir}/tmp"
 
-echo 'Adding kubectl directory to PATH...'
-echo "${kubectl_dir}" >> "${GITHUB_PATH}"
+mv ${cache_dir}/tmp/cowsay "${install_dir}/cowsay"
+chmod +x "${install_dir}/cowsay"
+
+echo 'Adding cowsay directory to PATH...'
+echo "${install_dir}" >> "${GITHUB_PATH}"
