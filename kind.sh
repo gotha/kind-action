@@ -277,4 +277,5 @@ create_kind_cluster() {
     "${kind_dir}/kind" "${args[@]}"
 }
 
+echo "kind.sh is starting"
 main "$@"

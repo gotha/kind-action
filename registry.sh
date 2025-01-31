@@ -141,10 +141,10 @@ connect_registry() {
 
 config_registry_for_nodes() {
     echo "which kubectl ======================="
-    which -a kubectl
+    which -a kubectl || echo "kubectl is missing"
     echo "which kubectl end ======================="
     echo "which kind ======================="
-    which -a kind
+    which -a kind || echo "kind is missing"
     echo "which kind end===================="
     #if [ -f "$GITHUB_PATH" ]; then
     #    while IFS= read -r line; do
@@ -183,4 +183,5 @@ data:
 EOF
 }
 
+echo "registry.sh is starting"
 main "$@"
