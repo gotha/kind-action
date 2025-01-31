@@ -183,5 +183,13 @@ data:
 EOF
 }
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 echo "registry.sh is starting"
+echo "which kubectl ............................"
+which -a kubectl || echo "kubectl is missing"
+echo "which kubectl end ........................"
+echo "which kind .............................."
+which -a kind || echo "kind is missing"
+echo "which kind end ......................."
+echo "======================================="
 main "$@"
