@@ -143,14 +143,13 @@ config_registry_for_nodes() {
     if [ -f "$GITHUB_PATH" ]; then
         while IFS= read -r line; do
             echo "ghpath: $line"
-            export PATH="$PATH:$line"
+            export PATH="$line:$PATH"
         done < "$GITHUB_PATH"
     fi
 
-    echo "which kubectl ======================="
+    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    echo "config_registry_for_nodes"
     which -a kubectl || echo "kubectl is missing"
-    echo "which kubectl end ======================="
-    echo "which kind ======================="
     which -a kind || echo "kind is missing"
     echo "which kind end===================="
 
@@ -186,11 +185,7 @@ EOF
 
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 echo "registry.sh is starting"
-echo "which kubectl ............................"
 which -a kubectl || echo "kubectl is missing"
-echo "which kubectl end ........................"
-echo "which kind .............................."
 which -a kind || echo "kind is missing"
-echo "which kind end ......................."
 echo "======================================="
 main "$@"
